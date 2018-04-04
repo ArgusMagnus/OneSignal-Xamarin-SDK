@@ -73,12 +73,24 @@ namespace Com.OneSignal.Abstractions
          }
       }
 
-	  public void PostNotification(Dictionary<string, object> data) => PostNotification(data, null, null);
-		 
-	  public void SetEmail(string email, string emailAuthToken) => SetEmail(email, emailAuthToken, null, null);
+      public event NotificationReceived NotificationReceived
+      {
+         add => builder._notificationReceivedDelegate += value;
+         remove => builder._notificationReceivedDelegate -= value;
+      }
 
-	  public void SetEmail(string email) => SetEmail(email, null, null);
+      public event NotificationOpened NotificationOpened
+      {
+         add => builder._notificationOpenedDelegate += value;
+         remove => builder._notificationOpenedDelegate -= value;
+      }
 
-	  public void LogoutEmail() => LogoutEmail(null, null);
-	}
+      public void PostNotification(Dictionary<string, object> data) => PostNotification(data, null, null);
+
+      public void SetEmail(string email, string emailAuthToken) => SetEmail(email, emailAuthToken, null, null);
+
+      public void SetEmail(string email) => SetEmail(email, null, null);
+
+      public void LogoutEmail() => LogoutEmail(null, null);
+   }
 }

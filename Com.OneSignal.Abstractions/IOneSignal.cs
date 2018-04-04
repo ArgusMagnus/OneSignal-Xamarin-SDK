@@ -28,6 +28,9 @@ namespace Com.OneSignal.Abstractions
       void SetEmail(string email);
       void LogoutEmail(OnSetEmailSuccess success, OnSetEmailFailure failure);
       void LogoutEmail();
+
+      event NotificationReceived NotificationReceived;
+      event NotificationOpened NotificationOpened;
    }
 }
  
